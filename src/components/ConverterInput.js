@@ -1,7 +1,12 @@
 import React from "react";
 import { TextField, Select, MenuItem, Grid } from "@material-ui/core";
 
-function ConverterInput({ input, units }) {
+function ConverterInput({ input, unitsNames }) {
+  const HandleChange = (e) => {
+    const newValue = Number(e.target.value) || null;
+    input.setValue(newValue);
+  };
+
   return (
     <>
       <Grid item xs>
@@ -11,7 +16,7 @@ function ConverterInput({ input, units }) {
           fullWidth
           value={input.value}
           type="number"
-          onChange={e => input.setValue(e.target.value)}
+          onChange={HandleChange}
         />
       </Grid>
       <Grid item xs={4}>
@@ -22,7 +27,7 @@ function ConverterInput({ input, units }) {
           onChange={e => input.setUnit(e.target.value)}
           value={input.unit}
         >
-          {units.map((item, idx) => (
+          {unitsNames.map(item => (
             <MenuItem value={item}>{item}</MenuItem>
           ))}
         </Select>

@@ -9,8 +9,9 @@ import {
   Paper,
   Grid
 } from "@material-ui/core";
+import CalculateValue from "../functions/CalculateValue";
 
-function ConverterOutput({ units }) {
+function ConverterOutput({ units, input }) {
   return (
     <Grid item xs>
       <TableContainer component={Paper}>
@@ -18,14 +19,16 @@ function ConverterOutput({ units }) {
           <TableHead>
             <TableRow>
               <TableCell>Unit</TableCell>
-              <TableCell>Value</TableCell>
+              <TableCell align="right">Value</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {units.map((item, idx) => (
+            {units.names.map(unitName => (
               <TableRow>
-                <TableCell scope="row">{item}</TableCell>
-                <TableCell />
+                <TableCell scope="row">{unitName}</TableCell>
+                <TableCell align="right">
+                  {CalculateValue(units.ratio, input, unitName)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
