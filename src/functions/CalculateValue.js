@@ -7,10 +7,10 @@ function CalculateValue(ratio, input, targetUnit) {
   const inputRatio = ratio[input.unit];
   const inputValue = input.value;
 
-  return targetRatio
+  return Number(targetRatio
     .dividedBy(inputRatio)
-    .times(inputValue)
-    .toString();
+    .times(inputValue))
+    .toLocaleString();
 }
 
 export default CalculateValue;

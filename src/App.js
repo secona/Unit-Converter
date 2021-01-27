@@ -1,23 +1,24 @@
 import React from "react";
-import Converter from "./components/Converter.js";
+import ConverterSelector from "./components/ConverterSelector";
+import Panels from "./components/Panels";
 import "./style.css";
 import { Container } from "@material-ui/core";
-
-const weight = {
-  Kilogram: 1,
-  Hectogram: 10,
-  Decagram: 100,
-  Gram: 1000,
-  Decigram: 10000,
-  Centigram: 100000,
-  Milligram: 1000000
-};
+import systems from "./measurementSystems.json";
 
 export default function App() {
+  const [activePanel, setActivePanel] = React.useState("Weight");
+
   return (
     <>
       <Container maxWidth="sm">
-        <Converter unitsRatio={weight}/>
+        <ConverterSelector 
+          systemsName={Object.keys(systems)}
+          panel={{activePanel, setActivePanel}}
+        />
+        <Panels 
+          systems={systems} 
+          activePanel={activePanel}
+        />
       </Container>
     </>
   );
