@@ -9,7 +9,7 @@ function CalculateValue(ratio, input, targetUnit) {
 
   return targetRatio
     .dividedBy(inputRatio)
-    .times(inputValue))
+    .times(inputValue)
     .toString();
 }
 
